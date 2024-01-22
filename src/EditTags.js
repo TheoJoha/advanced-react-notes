@@ -1,8 +1,9 @@
 import React from 'react'
+import {nanoid} from "nanoid"
 
 const EditTags = ({tags, editTags, newTag, addNewTag, setNewTag, removeTag}) => {
   return (
-    <div>
+    <div id="editTagsDiv">
         <form onSubmit={addNewTag}>
         <input 
         value={newTag}
@@ -14,7 +15,7 @@ const EditTags = ({tags, editTags, newTag, addNewTag, setNewTag, removeTag}) => 
         </form>
 
         <ul>
-            {tags.map(tag => <li>{tag}
+            {tags.map(tag => <li key={nanoid()}>{tag}
             <button onClick={removeTag}>REMOVE</button>
             </li>)}
         </ul>

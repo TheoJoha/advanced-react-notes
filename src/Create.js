@@ -1,11 +1,11 @@
 import React from 'react'
 import { nanoid } from "nanoid"
 
-const Create = ({ tags, addNewNote, newNote, setNewNote }) => {
+const Create = ({ tags, createNewNote, newNote, setNewNote }) => {
     return (
-        <div>
-            Create New Note
-            <form onSubmit={addNewNote}>
+        <div id="createNewNoteDiv">
+            Create New Note Functionality
+            <form onSubmit={(e) => createNewNote(e)}>
                 <input value={newNote.title || ""} type="text" placeholder="Title..." onChange={(e) => setNewNote(prev => {
                     return (
                         {
@@ -16,7 +16,7 @@ const Create = ({ tags, addNewNote, newNote, setNewNote }) => {
                         }
                     )
                 })} id="newNoteTitle" />
-                <select
+                {/* <select
                     onChange={(e) => setNewNote(prev => {
                         return (
                             {
@@ -29,7 +29,7 @@ const Create = ({ tags, addNewNote, newNote, setNewNote }) => {
                     })}
                     value={newNote.tags || ""} id="newNoteTags" >
                     {tags && tags.map(tag => <option value={tag}>{tag}</option>)}
-                </select>
+                </select> */}
                 <input value={newNote.content || ""} type="text" placeholder="Content..." onChange={(e) => setNewNote(prev => {
                     return (
                         {
@@ -40,7 +40,7 @@ const Create = ({ tags, addNewNote, newNote, setNewNote }) => {
                         }
                     )
                 })} id="newNoteContent" />
-
+                <button type="submit">CREATE NEW NOTE</button>
             </form>
         </div>
     )

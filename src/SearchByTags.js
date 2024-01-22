@@ -1,8 +1,19 @@
 import React from 'react'
+import {nanoid} from "nanoid"
 
-const SearchByTags = () => {
+const SearchByTags = ({filterTags, setFilterTags, tags}) => {
   return (
-    <div>SelectTags</div>
+    
+    <ul id="searchByTags">
+      SelectTags
+      {tags.map(tag => <li onClick={e => setFilterTags(prev => {
+        if (prev.includes(tag)) {
+          return prev.filter(x => x !== tag)
+        } else {
+          return [...prev, tag]
+        }
+      })} key={nanoid()}>{tag}</li>)}
+    </ul>
   )
 }
 

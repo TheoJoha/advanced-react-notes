@@ -1,0 +1,24 @@
+.note {
+  border: solid black 2px;
+}
+
+#createNewNoteDiv {
+  border: solid black 2px;
+}
+
+#editTagsDiv {
+  border: solid black 2px;
+}
+
+#searchByTags {
+  border: solid black 2px;
+}
+
+#searchByTitleDiv {
+  border: solid black 2px;
+}
+
+li {
+  list-style-type: none;
+  border: solid black 2px;
+}

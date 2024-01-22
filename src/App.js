@@ -4,7 +4,7 @@ import EditTags from './EditTags';
 import Notes from './Notes';
 import SearchByTags from './SearchByTags';
 import SearchByTitle from './SearchByTitle';
-import {nanoid} from "nanoid"
+import { nanoid } from "nanoid"
 
 function App() {
   const [notes, setNotes] = useState([
@@ -16,10 +16,17 @@ function App() {
     }
   ])
   const [filteredNotes, setFilteredNotes] = useState(notes || "")
-  const [newNote, setNewNote] = useState("")
+  const [newNote, setNewNote] = useState({
+    title: "",
+    content: "",
+    tags: ["test tag"],
+    id: nanoid()
+  })
   const [view, setView] = useState("notes")
-  const [tags, setTags] = useState([])
+  const [tags, setTags] = useState(["js", "bake"])
   const [newTag, setNewTag] = useState("")
+  const [filterInput, setFilterInput] = useState("")
+  const [filterTags, setFilterTags] = useState([])
 
   const addNewTag = (e) => {
     e.preventDefault()
@@ -28,10 +35,18 @@ function App() {
     }
   }
 
-  const addNewNote = (e) => {
+  const createNewNote = (e) => {
+    e.preventDefault()
     console.log(e.target)
     setNotes(prev => [...prev, newNote])
+    console.log(newNote)
+    console.log(notes)
   }
+
+  /* const addNewNote = (e) => {
+    console.log(e.target)
+    setNotes(prev => [...prev, newNote])
+  } */
 
   const removeTag = (e) => {
     setTags(prev => prev.filter(tag => tag.id !== e.target.id))
@@ -40,20 +55,31 @@ function App() {
   return (
     <div className="App">
       <h1>Notes</h1>
-      <Create 
-      newNote={newNote}
-      setNewNote={setNewNote}
-      addNewNote={addNewNote}
+      <Create
+        newNote={newNote}
+        setNewNote={setNewNote}
+        // addNewNote={addNewNote}
+        createNewNote={createNewNote}
       />
-      <EditTags tags={tags} setTags={setTags} 
-      newTag={newTag}
-      setNewTag={setNewTag}
-      addNewTag={addNewTag}
-      removeTag={removeTag}
+      <EditTags tags={tags} setTags={setTags}
+        newTag={newTag}
+        setNewTag={setNewTag}
+        addNewTag={addNewTag}
+        removeTag={removeTag}
       />
-      <SearchByTitle />
-      <SearchByTags />
-      <Notes notes={filteredNotes} />
+      <SearchByTitle filterInput={filterInput}
+        setFilterInput={setFilterInput}
+      />
+      <SearchByTags
+        filterTags={filterTags}
+        setFilterTags={setFilterTags}
+        tags={tags}
+      />
+      <Notes notes={notes}
+        filterInput={filterInput}
+        filterTags={filterTags}
+
+      />
     </div>
   );
 }

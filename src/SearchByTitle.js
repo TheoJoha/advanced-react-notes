@@ -1,8 +1,13 @@
 import React from 'react'
 
-const SearchByTitle = () => {
+const SearchByTitle = ({setFilterInput, filterInput}) => {
   return (
-    <div>SearchByTitle</div>
+    <div id="searchByTitleDiv">SearchByTitle
+        <input type="text" value={filterInput} 
+        onChange={(e) => setFilterInput(e.target.value)}
+        />
+
+    </div>
   )
 }
 
