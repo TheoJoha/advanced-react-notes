@@ -1,9 +1,10 @@
 import React from 'react'
 import {nanoid} from "nanoid"
 
-const EditTags = ({tags, editTags, newTag, addNewTag, setNewTag, removeTag}) => {
+const EditTags = ({tags, setTags, editTags, newTag, addNewTag, setNewTag, removeTag}) => {
   return (
     <div id="editTagsDiv">
+        EDIT TAGS
         <form onSubmit={addNewTag}>
         <input 
         value={newTag}
@@ -16,7 +17,7 @@ const EditTags = ({tags, editTags, newTag, addNewTag, setNewTag, removeTag}) => 
 
         <ul>
             {tags.map(tag => <li key={nanoid()}>{tag}
-            <button onClick={removeTag}>REMOVE</button>
+            <button className="removeTag" onClick={() => setTags(prev => prev.filter(x => x !== tag))}>REMOVE</button>
             </li>)}
         </ul>
     </div>

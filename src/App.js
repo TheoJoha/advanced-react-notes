@@ -60,8 +60,10 @@ function App() {
         setNewNote={setNewNote}
         // addNewNote={addNewNote}
         createNewNote={createNewNote}
+        tags={tags}
       />
-      <EditTags tags={tags} setTags={setTags}
+      <EditTags
+        tags={tags} setTags={setTags}
         newTag={newTag}
         setNewTag={setNewTag}
         addNewTag={addNewTag}
@@ -75,10 +77,11 @@ function App() {
         setFilterTags={setFilterTags}
         tags={tags}
       />
-      <Notes notes={notes}
+      <Notes
+        notes={notes}
         filterInput={filterInput}
         filterTags={filterTags}
-
+        setNotes={setNotes}
       />
     </div>
   );

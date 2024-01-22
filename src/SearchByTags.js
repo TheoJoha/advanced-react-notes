@@ -6,7 +6,7 @@ const SearchByTags = ({filterTags, setFilterTags, tags}) => {
     
     <ul id="searchByTags">
       SelectTags
-      {tags.map(tag => <li onClick={e => setFilterTags(prev => {
+      {tags.map(tag => <li onClick={() => setFilterTags(prev => {
         if (prev.includes(tag)) {
           return prev.filter(x => x !== tag)
         } else {

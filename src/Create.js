@@ -1,7 +1,9 @@
-import React from 'react'
+import {useState} from 'react'
 import { nanoid } from "nanoid"
 
 const Create = ({ tags, createNewNote, newNote, setNewNote }) => {
+    const [selectionTags, setSelectionTags] = useState(tags.map(tag => {return  ({"name": tag, "selected": false})}) || [])
+    
     return (
         <div id="createNewNoteDiv">
             Create New Note Functionality
@@ -16,20 +18,25 @@ const Create = ({ tags, createNewNote, newNote, setNewNote }) => {
                         }
                     )
                 })} id="newNoteTitle" />
-                {/* <select
-                    onChange={(e) => setNewNote(prev => {
-                        return (
-                            {
+                <div id="editTagsInsideOfCreateNewNoteDiv">
+                    {selectionTags && tags.map(tag => <div className="createNewNoteTag" key={nanoid()} onClick={() => setNewNote((prev) => {
+                        if (newNote.tags.includes(tag)) {
+                            return {
                                 title: prev.title,
                                 content: prev.content,
-                                tags: [...e.target.options].filter(({selected}) => selected).map(({value}) => value),
+                                tags: prev.tags.filter(x => x !== tag),
                                 id: nanoid()
                             }
-                        )
-                    })}
-                    value={newNote.tags || ""} id="newNoteTags" >
-                    {tags && tags.map(tag => <option value={tag}>{tag}</option>)}
-                </select> */}
+                        } else {
+                            return {
+                                title: prev.title,
+                                content: prev.content,
+                                tags: prev.tags.push(tag),
+                                id: nanoid()
+                            }
+                        }
+                    })} >{tag}</div>)}
+                </div>
                 <input value={newNote.content || ""} type="text" placeholder="Content..." onChange={(e) => setNewNote(prev => {
                     return (
                         {
