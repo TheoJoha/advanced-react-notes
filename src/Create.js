@@ -18,7 +18,7 @@ const Create = ({ tags, createNewNote, newNote, setNewNote }) => {
                     )
                 })} id="newNoteTitle" />
                 <div id="editTagsInsideOfCreateNewNoteDiv">
-                    {tags.map(tag => <div
+                    {tags.map(tag => <button
                     /* style={{backgroundColor: newNote.tags && newNote.tags.includes(tag) ? "lightgreen" : "gray"}} */
                     className="createNewNoteTag" key={nanoid()} onClick={() => setNewNote((prev) => {
                         if (newNote?.tags.includes(tag)) {
@@ -36,7 +36,7 @@ const Create = ({ tags, createNewNote, newNote, setNewNote }) => {
                                 id: prev.id
                             }
                         }
-                    })} >{tag}</div>)}
+                    })} >{tag}</button>)}
                 </div>
                 <input value={newNote.content || ""} type="text" placeholder="Content..." onChange={(e) => setNewNote(prev => {
                     return (
