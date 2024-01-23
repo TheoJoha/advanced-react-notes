@@ -3,10 +3,9 @@ import {nanoid} from "nanoid"
 
 const SearchByTags = ({filterTags, setFilterTags, tags}) => {
   return (
-    
     <ul id="searchByTags">
       SelectTags
-      {tags.map(tag => <li onClick={() => setFilterTags(prev => {
+      {tags.map(tag => <li style={{backgroundColor: filterTags.includes(tag) ? "lightgreen" : "white"}} onClick={() => setFilterTags(prev => {
         if (prev.includes(tag)) {
           return prev.filter(x => x !== tag)
         } else {

@@ -1,7 +1,8 @@
-import React from 'react'
+import {useState} from 'react'
 import {nanoid} from "nanoid"
 
 const EditTags = ({tags, setTags, editTags, newTag, addNewTag, setNewTag, removeTag}) => {
+
   return (
     <div id="editTagsDiv">
         EDIT TAGS
