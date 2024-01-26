@@ -1,8 +1,7 @@
 import React from 'react'
 import { nanoid } from "nanoid"
-import EditNote from './EditNote'
 
-const Notes = ({setNotes, notes, filterInput, filterTags }) => {
+const Notes = ({ setNotes, notes, filterInput, filterTags }) => {
     if (filterTags.length > 0) {
         notes = notes.filter(note => filterTags.every(tag => note.tags.includes(tag)))
     }
@@ -17,8 +16,9 @@ const Notes = ({setNotes, notes, filterInput, filterTags }) => {
                 <p>{note.content}</p>
                 <button onClick={() => setNotes(prev => prev.filter(x => x.id !== note.id))} className="removeButton">REMOVE</button>
                 {/* <EditNote notes={notes} setNotes={setNotes} note={note}/> */}
-                <ul>{note?.tags && note.tags.map(tag => <li className="tagInNote"  key={nanoid()}>{tag}</li>)}</ul>
-            </li>)}</ul>
+                <ul>{note?.tags && note.tags.map(tag => <li className="tagInNote" key={nanoid()}>{tag}</li>)}</ul>
+            </li>)}
+            </ul>
         </div>
     )
 }

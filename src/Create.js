@@ -1,55 +1,37 @@
-import {useState} from 'react'
 import { nanoid } from "nanoid"
+import { useState } from "react"
 
-const Create = ({ notes, tags, createNewNote, newNote, setNewNote }) => {
-    
+const Create = ({ handleTagClick, notes, tags, createNewNote, newNote, setNewNote }) => {
+
     return (
-        <div id="createNewNoteDiv">
+        <div id="createNewNoteDiv" >
             Create New Note Functionality
-            <form onSubmit={(e) => createNewNote(e)}>
-                <input value={newNote.title || ""} type="text" placeholder="Title..." onChange={(e) => setNewNote(prev => {
-                    return (
-                        {
-                            title: e.target.value,
-                            content: prev.content,
-                            tags: prev.tags,
-                            id: prev.id
-                        }
-                    )
-                })} id="newNoteTitle" />
-                <textarea rows="5" cols="33" value={newNote.content || ""} type="text" placeholder="Content..." onChange={(e) => setNewNote(prev => {
-                    return (
-                        {
-                            title: prev.title,
-                            content: e.target.value,
-                            tags: prev.tags,
-                            id: prev.id
-                        }
-                    )
-                })} id="newNoteContent" />
-                <div id="editTagsInsideOfCreateNewNoteDiv">
-                    {tags.map(tag => <button
-                    style={{backgroundColor: newNote.tags.includes(tag) ? "greenyellow" : "lightblue"}}
-                    className="createNewNoteTag" key={nanoid()} onClick={() => setNewNote((prev) => {
-                        if (newNote?.tags.includes(tag)) {
-                            return {
-                                title: prev.title,
-                                content: prev.content,
-                                tags: prev.tags.filter(x => x !== tag),
-                                id: prev.id
-                            }
-                        } else {
-                            return {
-                                title: prev.title,
-                                content: prev.content,
-                                tags: prev.tags.push(tag),
-                                id: prev.id
-                            }
-                        }
-                    })} >{tag}</button>)}
-                </div>
-                <button className="submitButton" type="submit">CREATE NEW NOTE</button>
-            </form>
+            <input value={newNote.title} type="text" placeholder="Title..." onChange={(e) => setNewNote(prev => {
+                return (
+                    {
+                        title: e.target.value,
+                        content: prev.content,
+                        tags: prev.tags,
+                        id: prev.id
+                    }
+                )
+            })} id="newNoteTitle" />
+            <textarea rows="5" cols="33" value={newNote.content || ""} type="text" placeholder="Content..." onChange={(e) => setNewNote(prev => {
+                return (
+                    {
+                        title: prev.title,
+                        content: e.target.value,
+                        tags: prev.tags,
+                        id: prev.id
+                    }
+                )
+            })} id="newNoteContent" />
+            <div id="editTagsInsideOfCreateNewNoteDiv">
+                {tags.map(tag => <button value={tag}
+                    /* style={{ backgroundColor: selectedTags.includes(tag) ? "greenyellow" : "lightblue" }} */
+                    className="createNewNoteTag" key={nanoid()} onClick={e => handleTagClick(e)} >{tag}</button>)}
+            </div>
+            <button onClick={createNewNote} className="submitButton" type="submit">CREATE NEW NOTE</button>
         </div>
     )
 }

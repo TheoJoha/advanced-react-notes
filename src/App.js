@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Create from './Create';
 import EditTags from './EditTags';
 import Notes from './Notes';
@@ -25,6 +25,16 @@ function App() {
   const [newTag, setNewTag] = useState("")
   const [filterInput, setFilterInput] = useState("")
   const [filterTags, setFilterTags] = useState([])
+  const [selectedTags, setSelectedTags] = useState([])
+
+  useEffect(() => {
+    setNewNote({
+      title: "",
+      content: "",
+      tags: [],
+      id: nanoid()
+    })
+  },[notes])
 
   const addNewTag = (e) => {
     e.preventDefault()
@@ -34,17 +44,41 @@ function App() {
   }
 
   const createNewNote = (e) => {
-    e.preventDefault()
     console.log(e.target)
     setNotes(prev => [...prev, newNote])
-    setNewNote({
-      title: "",
-      content: "",
-      tags: [],
-      id: nanoid()
-    })
+    
     console.log(newNote)
     console.log(notes)
+  }
+
+  const handleTagClick = (e) => {
+    console.log(e.target.value)
+    setSelectedTags(prev => {
+      if (prev.includes(e.target.value)) {
+        return prev
+      } else {
+        return [...prev, e.target.value]
+      }
+    })
+    setNewNote((prev) => {
+      if (!prev.tags.includes(e.target.value)) {
+        return ({
+          title: prev.title,
+          content: prev.content,
+          tags: [...prev.tags, e.target.value],
+          id: prev.id
+        })
+      } else {
+        return ({
+          title: prev.title,
+          content: prev.content,
+          tags: prev.tags,
+          id: prev.id
+        })
+      }
+
+    })
+    console.log(newNote)
   }
 
   const removeTag = (e) => {
@@ -59,6 +93,9 @@ function App() {
         setNewNote={setNewNote}
         createNewNote={createNewNote}
         tags={tags}
+        handleTagClick={handleTagClick}
+        selectedTags={selectedTags}
+        setSelectedTags={setSelectedTags}
       />
       <EditTags
         tags={tags} setTags={setTags}

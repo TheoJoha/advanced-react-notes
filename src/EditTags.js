@@ -15,12 +15,11 @@ const EditTags = ({ tags, setTags, newTag, addNewTag, setNewTag }) => {
             type="text"
             onChange={(e) => setNewTag(e.target.value)}
           />
-          <button type="submit">ADD TAG</button>
+          <button style={{backgroundColor: "lightgreen"}} type="submit">ADD TAG</button>
         </form>
         <ul>
-          {tags.map(tag => <li className="removeTagDiv" key={nanoid()}>{tag}
-            <button className="removeTag" onClick={() => setTags(prev => prev.filter(x => x !== tag))}>REMOVE</button>
-          </li>)}
+          {tags.map(tag => <button key={nanoid()} className="removeTag" onClick={() => setTags(prev => prev.filter(x => x !== tag))}>{tag}</button>
+          )}
         </ul>
       </div>
     )
