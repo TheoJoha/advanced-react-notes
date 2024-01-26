@@ -15,7 +15,8 @@ const Notes = ({setNotes, notes, filterInput, filterTags }) => {
             <ul>{notes.map(note => <li className="note" key={nanoid()}>
                 <h3>{note.title}</h3>
                 <p>{note.content}</p>
-                <EditNote notes={notes} setNotes={setNotes} note={note}/>
+                <button onClick={() => setNotes(prev => prev.filter(x => x.id !== note.id))} className="removeButton">REMOVE</button>
+                {/* <EditNote notes={notes} setNotes={setNotes} note={note}/> */}
                 <ul>{note?.tags && note.tags.map(tag => <li className="tagInNote"  key={nanoid()}>{tag}</li>)}</ul>
             </li>)}</ul>
         </div>

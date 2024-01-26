@@ -15,14 +15,12 @@ function App() {
       id: nanoid()
     }
   ])
-  const [filteredNotes, setFilteredNotes] = useState(notes || "")
   const [newNote, setNewNote] = useState({
     title: "",
     content: "",
-    tags: ["test tag"],
+    tags: [],
     id: nanoid()
   })
-  const [view, setView] = useState("notes")
   const [tags, setTags] = useState(["bike", "bake"])
   const [newTag, setNewTag] = useState("")
   const [filterInput, setFilterInput] = useState("")
@@ -49,11 +47,6 @@ function App() {
     console.log(notes)
   }
 
-  /* const addNewNote = (e) => {
-    console.log(e.target)
-    setNotes(prev => [...prev, newNote])
-  } */
-
   const removeTag = (e) => {
     setTags(prev => prev.filter(tag => tag.id !== e.target.id))
   }
@@ -64,7 +57,6 @@ function App() {
       <Create
         newNote={newNote}
         setNewNote={setNewNote}
-        // addNewNote={addNewNote}
         createNewNote={createNewNote}
         tags={tags}
       />

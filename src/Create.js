@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import { nanoid } from "nanoid"
 
-const Create = ({ tags, createNewNote, newNote, setNewNote }) => {
+const Create = ({ notes, tags, createNewNote, newNote, setNewNote }) => {
     
     return (
         <div id="createNewNoteDiv">
@@ -29,7 +29,7 @@ const Create = ({ tags, createNewNote, newNote, setNewNote }) => {
                 })} id="newNoteContent" />
                 <div id="editTagsInsideOfCreateNewNoteDiv">
                     {tags.map(tag => <button
-                    /* style={{backgroundColor: newNote.tags && newNote.tags.includes(tag) ? "lightgreen" : "gray"}} */
+                    style={{backgroundColor: newNote.tags.includes(tag) ? "greenyellow" : "lightblue"}}
                     className="createNewNoteTag" key={nanoid()} onClick={() => setNewNote((prev) => {
                         if (newNote?.tags.includes(tag)) {
                             return {
