@@ -17,6 +17,16 @@ const Create = ({ tags, createNewNote, newNote, setNewNote }) => {
                         }
                     )
                 })} id="newNoteTitle" />
+                <textarea rows="5" cols="33" value={newNote.content || ""} type="text" placeholder="Content..." onChange={(e) => setNewNote(prev => {
+                    return (
+                        {
+                            title: prev.title,
+                            content: e.target.value,
+                            tags: prev.tags,
+                            id: prev.id
+                        }
+                    )
+                })} id="newNoteContent" />
                 <div id="editTagsInsideOfCreateNewNoteDiv">
                     {tags.map(tag => <button
                     /* style={{backgroundColor: newNote.tags && newNote.tags.includes(tag) ? "lightgreen" : "gray"}} */
@@ -38,17 +48,7 @@ const Create = ({ tags, createNewNote, newNote, setNewNote }) => {
                         }
                     })} >{tag}</button>)}
                 </div>
-                <input value={newNote.content || ""} type="text" placeholder="Content..." onChange={(e) => setNewNote(prev => {
-                    return (
-                        {
-                            title: prev.title,
-                            content: e.target.value,
-                            tags: prev.tags,
-                            id: prev.id
-                        }
-                    )
-                })} id="newNoteContent" />
-                <button type="submit">CREATE NEW NOTE</button>
+                <button className="submitButton" type="submit">CREATE NEW NOTE</button>
             </form>
         </div>
     )

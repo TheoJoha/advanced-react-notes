@@ -3,16 +3,16 @@ import {nanoid} from "nanoid"
 
 const SearchByTags = ({filterTags, setFilterTags, tags}) => {
   return (
-    <ul id="searchByTags">
-      SelectTags
-      {tags.map(tag => <li style={{backgroundColor: filterTags.includes(tag) ? "lightgreen" : "white"}} onClick={() => setFilterTags(prev => {
+    <div id="searchByTags">
+      SEARCH BY TAGS:
+      {tags.map(tag => <button className="selectNotesTag" style={{backgroundColor: filterTags.includes(tag) ? "lightgreen" : "lightblue"}} onClick={() => setFilterTags(prev => {
         if (prev.includes(tag)) {
           return prev.filter(x => x !== tag)
         } else {
           return [...prev, tag]
         }
-      })} key={nanoid()}>{tag}</li>)}
-    </ul>
+      })} key={nanoid()}>{tag}</button>)}
+    </div>
   )
 }
 

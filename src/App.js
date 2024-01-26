@@ -10,8 +10,8 @@ function App() {
   const [notes, setNotes] = useState([
     {
       title: "Test note 1",
-      content: "My first note, yay!",
-      tags: ["random tag", "cool tag"],
+      content: "My first note!",
+      tags: [],
       id: nanoid()
     }
   ])
@@ -23,7 +23,7 @@ function App() {
     id: nanoid()
   })
   const [view, setView] = useState("notes")
-  const [tags, setTags] = useState(["js", "bake"])
+  const [tags, setTags] = useState(["bike", "bake"])
   const [newTag, setNewTag] = useState("")
   const [filterInput, setFilterInput] = useState("")
   const [filterTags, setFilterTags] = useState([])
@@ -39,6 +39,12 @@ function App() {
     e.preventDefault()
     console.log(e.target)
     setNotes(prev => [...prev, newNote])
+    setNewNote({
+      title: "",
+      content: "",
+      tags: [],
+      id: nanoid()
+    })
     console.log(newNote)
     console.log(notes)
   }

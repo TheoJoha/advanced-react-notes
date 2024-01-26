@@ -11,12 +11,12 @@ const Notes = ({setNotes, notes, filterInput, filterTags }) => {
     }
 
     return (
-        <div>
+        <div id="notesDiv">
             <ul>{notes.map(note => <li className="note" key={nanoid()}>
-                <p>{note.title}</p>
-                <EditNote notes={notes} setNotes={setNotes} note={note}/>
-                <ul>{note?.tags && note.tags.map(tag => <li key={nanoid()}>{tag}</li>)}</ul>
+                <h3>{note.title}</h3>
                 <p>{note.content}</p>
+                <EditNote notes={notes} setNotes={setNotes} note={note}/>
+                <ul>{note?.tags && note.tags.map(tag => <li className="tagInNote"  key={nanoid()}>{tag}</li>)}</ul>
             </li>)}</ul>
         </div>
     )
